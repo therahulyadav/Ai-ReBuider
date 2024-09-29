@@ -22,7 +22,7 @@ function ViewResume() {
     await setResumeInfo(resp.data.data);
 }
 
-
+console.log(...resumeInfo);
     const HandleDownload=()=>{
         window.print();
     }
@@ -43,7 +43,7 @@ function ViewResume() {
         data={{
           text: "Hello Everyone, This is my resume please open url to see it",
           url: `${import.meta.env.REACT_APP_BASE_URL}/my-resume/${resumeId}/view`,
-          title: `${resp?.data.data.firstName} ${resp?.data.data.lastName} resume`,
+          title: `${resumeInfo?.firstName} ${resumeInfo?.lastName} resume`,
         }}
         onClick={() => console.log("shared successfully!")}
       > <Button>Share</Button>
