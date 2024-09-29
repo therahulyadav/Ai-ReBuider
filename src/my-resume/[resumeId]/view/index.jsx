@@ -11,7 +11,8 @@ function ViewResume() {
 
     const [resumeInfo,setResumeInfo]=useState();
     const {resumeId}=useParams();
-
+    const websiteUrl = import.meta.env.REACT_APP_BASE_URL;
+    console.log(websiteUrl);
     useEffect(()=>{
         GetResumeInfo();
     },[])
@@ -26,7 +27,7 @@ function ViewResume() {
     });
 };
    const copyToBoard = ()=>{
-    navigator.clipboard.writeText(`${import.meta.env.REACT_APP_BASE_URL}/my-resume/${resumeId}/view`);
+    navigator.clipboard.writeText(`${websiteUrl}/my-resume/${resumeId}/view`);
     alert("share link copied");
    }
     const HandleDownload=()=>{
