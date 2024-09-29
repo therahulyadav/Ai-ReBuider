@@ -47,7 +47,7 @@ function ViewResume() {
         data={{
           text: "Hello Everyone, This is my resume please open url to see it",
           url: `${import.meta.env.REACT_APP_BASE_URL}/my-resume/${resumeId}/view`,
-          title: `${resumeInfo.firstName ? resumeInfo.firstName : "Your name"} ${resumeInfo.lastName ? resumeInfo.lastName : " "} resume`,
+          title: `**your name here** resume`,
         }}
         onClick={() => console.log("shared successfully!")}
       > <Button>Share</Button>
