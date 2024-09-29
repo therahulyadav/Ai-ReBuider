@@ -11,8 +11,7 @@ function ViewResume() {
 
     const [resumeInfo,setResumeInfo]=useState();
     const {resumeId}=useParams();
-    const websiteUrl = import.meta.env.REACT_APP_BASE_URL;
-    console.log(websiteUrl);
+
     useEffect(()=>{
         GetResumeInfo();
     },[])
@@ -26,13 +25,12 @@ function ViewResume() {
       console.error("Error fetching resume:", err);
     });
 };
-   const copyToBoard = ()=>{
-    navigator.clipboard.writeText(`${websiteUrl}/my-resume/${resumeId}/view`);
-    alert("share link copied");
-   }
+
+
     const HandleDownload=()=>{
         window.print();
     }
+console.log(resumeInfo);
   return (
     <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
         <div id="no-print">
@@ -46,7 +44,15 @@ function ViewResume() {
             <div className='flex justify-between px-44 my-10'>
                 <Button onClick={HandleDownload}>Download</Button>
                
-     <Button onClick={copyToBoard}>Share</Button>
+                <RWebShare
+        data={{
+          text: "Hello Everyone, This is my resume please open url to see it",
+          url: `https://airebuilder.netlify.app/my-resume/${resumeId}/view`,
+          title: `${resumeInfo?.firstName} ${resumeInfo?.lastName} resume`,
+        }}
+        onClick={() => console.log("shared successfully!")}
+      > <Button>Share</Button>
+      </RWebShare>
             </div>
         </div>
             
