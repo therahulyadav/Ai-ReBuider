@@ -15,12 +15,17 @@ function ViewResume() {
     useEffect(()=>{
         GetResumeInfo();
     },[])
-    const GetResumeInfo=()=>{
-        GlobalApi.GetResumeById(resumeId).then(resp=>{
-            console.log(resp.data.data);
-            setResumeInfo(resp.data.data);
-        })
-    }
+    const GetResumeInfo = () => {
+  GlobalApi.GetResumeById(resumeId)
+    .then(resp => {
+      console.log(resp.data.data);
+      setResumeInfo(resp.data.data);
+    })
+    .catch(err => {
+      console.error("Error fetching resume:", err);
+    });
+};
+
 
     const HandleDownload=()=>{
         window.print();
