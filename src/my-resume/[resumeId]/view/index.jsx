@@ -44,15 +44,15 @@ function ViewResume() {
             <div className='flex justify-between px-44 my-10'>
                 <Button onClick={HandleDownload}>Download</Button>
                
-{/*                 <RWebShare
+                <RWebShare
         data={{
           text: "Hello Everyone, This is my resume please open url to see it",
-          url: `${import.meta.env.VITE_BASE_URL}/my-resume/${resumeId}/view`,
-          title: resumeInfo?.firstName+" "+resumeInfo?.lastName+" resume",
+          url: `${import.meta.env.REACT_APP_BASE_URL}/my-resume/${resumeId}/view`,
+          title: `${resumeInfo?.firstName} ${resumeInfo?.lastName} resume`,
         }}
         onClick={() => console.log("shared successfully!")}
       > <Button>Share</Button>
-      </RWebShare> */}
+      </RWebShare>
             </div>
         </div>
             
