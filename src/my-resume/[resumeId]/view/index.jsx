@@ -22,7 +22,6 @@ function ViewResume() {
     await setResumeInfo(resp.data.data);
 }
 
-console.log(...resumeInfo);
     const HandleDownload=()=>{
         window.print();
     }
