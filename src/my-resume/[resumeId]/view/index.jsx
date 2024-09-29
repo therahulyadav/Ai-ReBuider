@@ -42,9 +42,9 @@ function ViewResume() {
                 <p className='text-center text-gray-400'>Now you are ready to download your resume and you can share unique 
                     resume url with your friends and family </p>
             <div className='flex justify-between px-44 my-10'>
-{/*                 <Button onClick={HandleDownload}>Download</Button>
+                <Button onClick={HandleDownload}>Download</Button>
                
-                <RWebShare
+{/*                 <RWebShare
         data={{
           text: "Hello Everyone, This is my resume please open url to see it",
           url: `${import.meta.env.VITE_BASE_URL}/my-resume/${resumeId}/view`,
