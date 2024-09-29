@@ -15,12 +15,17 @@ function ViewResume() {
     useEffect(()=>{
         GetResumeInfo();
     },[])
+    const GetResumeInfo = () => {
+  GlobalApi.GetResumeById(resumeId)
+    .then(resp => {
+      console.log(resp.data.data);
+      setResumeInfo(resp.data.data);
+    })
+    .catch(err => {
+      console.error("Error fetching resume:", err);
+    });
+};
 
-  async function GetResumeInfo(){
-    const resp = await GlobalApi.GetResumeById(resumeId);
-    console.log(resp.data.data)
-    await setResumeInfo(resp.data.data);
-}
 
     const HandleDownload=()=>{
         window.print();
@@ -38,15 +43,15 @@ function ViewResume() {
             <div className='flex justify-between px-44 my-10'>
                 <Button onClick={HandleDownload}>Download</Button>
                
-                {/* <RWebShare
+                <RWebShare
         data={{
           text: "Hello Everyone, This is my resume please open url to see it",
           url: `${import.meta.env.REACT_APP_BASE_URL}/my-resume/${resumeId}/view`,
-          title: `${resumeInfo?.firstName} ${resumeInfo?.lastName} resume`,
+          title: `${resumeInfo.firstName ? resumeInfo.firstName : "Your name"} ${resumeInfo.lastName ? resumeInfo.lastName : " "} resume`,
         }}
         onClick={() => console.log("shared successfully!")}
       > <Button>Share</Button>
-      </RWebShare> */}
+      </RWebShare>
             </div>
         </div>
             
