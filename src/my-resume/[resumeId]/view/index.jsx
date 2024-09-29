@@ -15,7 +15,7 @@ function ViewResume() {
     useEffect(()=>{
         GetResumeInfo();
     },[])
-    
+
   async function GetResumeInfo(){
     const resp = await GlobalApi.GetResumeById(resumeId);
     console.log(resp.data.data)
@@ -26,7 +26,6 @@ function ViewResume() {
     const HandleDownload=()=>{
         window.print();
     }
-console.log(resumeInfo.lastName);
   return (
     <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
         <div id="no-print">
@@ -40,15 +39,15 @@ console.log(resumeInfo.lastName);
             <div className='flex justify-between px-44 my-10'>
                 <Button onClick={HandleDownload}>Download</Button>
                
-{/*                 <RWebShare
+                <RWebShare
         data={{
           text: "Hello Everyone, This is my resume please open url to see it",
           url: `${import.meta.env.REACT_APP_BASE_URL}/my-resume/${resumeId}/view`,
-          title: `${resumeInfo?.firstName} ${resumeInfo?.lastName} resume`,
+          title: `${resp?.data.data.firstName} ${resp?.data.data.lastName} resume`,
         }}
         onClick={() => console.log("shared successfully!")}
       > <Button>Share</Button>
-      </RWebShare> */}
+      </RWebShare>
             </div>
         </div>
             
