@@ -25,8 +25,10 @@ function ViewResume() {
       console.error("Error fetching resume:", err);
     });
 };
-
-
+   const copyToBoard = ()=>{
+    navigator.clipboard.writeText(`${import.meta.env.REACT_APP_BASE_URL}/my-resume/${resumeId}/view`);
+    alert("share link copied");
+   }
     const HandleDownload=()=>{
         window.print();
     }
@@ -43,15 +45,7 @@ function ViewResume() {
             <div className='flex justify-between px-44 my-10'>
                 <Button onClick={HandleDownload}>Download</Button>
                
-                <RWebShare
-        data={{
-          text: "Hello Everyone, This is my resume please open url to see it",
-          url: `${import.meta.env.REACT_APP_BASE_URL}/my-resume/${resumeId}/view`,
-          title: `**your name here** resume`,
-        }}
-        onClick={() => console.log("shared successfully!")}
-      > <Button>Share</Button>
-      </RWebShare>
+     <Button onClick={copyToBoard}>Share</Button>
             </div>
         </div>
             
