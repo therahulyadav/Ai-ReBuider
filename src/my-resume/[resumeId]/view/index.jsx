@@ -30,7 +30,7 @@ function ViewResume() {
     const HandleDownload=()=>{
         window.print();
     }
-console.log(resumeInfo);
+console.log(resumeInfo.lastName);
   return (
     <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
         <div id="no-print">
