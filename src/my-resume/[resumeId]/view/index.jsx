@@ -35,11 +35,9 @@ function ViewResume() {
         window.print();
     }
     
-    const handleDownloadDoc() {
-    htmlCssExportWord(
-    componentRef.current.innerHTML, cssFile,
-    "exported-document.doc");
-  }
+    const handleDownloadDoc = () => {
+    htmlCssExportWord(componentRef.current.innerHTML, cssFile,"exported-document.doc");
+    };
     
   return (
     <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
