@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import GlobalApi from './../../../../service/GlobalApi'
 import { RWebShare } from 'react-web-share'
 import {htmlCssExportWord} from "html-css-export-word"
+import cssFile from 'index.css'
 
 function ViewResume() {
 
