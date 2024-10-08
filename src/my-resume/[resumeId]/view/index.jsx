@@ -2,16 +2,18 @@ import Header from '@/components/custom/Header'
 import { Button } from '@/components/ui/button'
 import { ResumeInfoContext } from '@/context/ResumeInfoContext'
 import ResumePreview from '@/dashboard/resume/components/ResumePreview'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState , useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import GlobalApi from './../../../../service/GlobalApi'
 import { RWebShare } from 'react-web-share'
+import { saveAs } from 'file-saver'
+import htmlToDocx from 'html-to-docx'
 
 function ViewResume() {
 
     const [resumeInfo,setResumeInfo]=useState();
     const {resumeId}=useParams();
-
+    const componentRef = useRef();
     useEffect(()=>{
         GetResumeInfo();
     },[])
@@ -33,6 +35,22 @@ function ViewResume() {
     const HandleDownload=()=>{
         window.print();
     }
+    const handleDownloadDoc = async () => {
+    // Get the HTML content of the component
+    const componentHTML = componentRef.current.innerHTML;
+
+    // Convert HTML to .docx format
+    const docxContent = await htmlToDocx(componentHTML, {
+      orientation: "portrait",
+      margins: { top: 720, right: 720, bottom: 720, left: 720 },
+    });
+
+    // Trigger download
+    const blob = new Blob([docxContent], {
+      type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    });
+    saveAs(blob, "component.docx");
+  };
 console.log(resumeInfo);
   return (
     <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
@@ -46,7 +64,7 @@ console.log(resumeInfo);
                     resume url with your friends and family </p>
             <div className='flex justify-between px-44 my-10'>
                 <Button onClick={HandleDownload}>Download</Button>
-               
+                <Button onClick={handleDownloadDoc}>Download as .docx</Button>
                <Button onClick={copyToClip}>Share</Button>
  
             </div>
@@ -55,7 +73,7 @@ console.log(resumeInfo);
         </div>
         <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
         <div id="print-area" >
-                <ResumePreview/>
+                <ResumePreview ref={componentRef}/>
             </div>
             </div>
     </ResumeInfoContext.Provider>
