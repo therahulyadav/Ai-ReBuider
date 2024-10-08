@@ -37,16 +37,24 @@ function ViewResume() {
     }
     
     const handleDownloadDoc = async () => {
+          try {
+    const { default: htmlToDocx } = await import('html-to-docx');
+              
+  } catch (error) {
+    console.error("Failed to load html-to-docx", error);
+  }
     const componentHTML = componentRef.current.innerHTML;
+    try{
     const docxContent = await htmlToDocx(componentHTML, {
       orientation: "portrait",
       margins: { top: 720, right: 720, bottom: 720, left: 720 },
     });
-
+    }catch(error){console.error("fail to docxcontent")}
+    try{
     const blob = new Blob([docxContent], {
       type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     });
-
+    }catch(e){console.log("fail to blob html")}
     // Use file-saver to trigger download
     saveAs(blob, "component.docx");
   }
