@@ -59,10 +59,10 @@ function ViewResume() {
             
         </div>
         <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
-        <div id="print-area" >
-                <ResumePreview ref={componentRef}/>
-            </div>
-            </div>
+        <div  ref={componentRef} id="print-area" >
+                <ResumePreview />
+        </div>
+        </div>
     </ResumeInfoContext.Provider>
   )
 }
