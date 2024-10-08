@@ -4,12 +4,17 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react()],
+   build: {
+    rollupOptions: {
+      external: ['html-docx-js'],  // Externalize 'html-docx-js'
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
   optimizeDeps: {
-    include: ['html-to-docx'],  // Pre-bundle html-to-docx
+    include: ['html-docx-js'],  // Pre-bundle html-to-docx
   },
 });
