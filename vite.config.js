@@ -6,8 +6,11 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['html-to-docx'], // Corrected the array syntax
+      external: ['html-to-docx'], // Externalize html-to-docx only
     },
+  },
+  optimizeDeps: {
+    include: ['html-to-docx'], // Force Vite to pre-bundle html-to-docx
   },
   resolve: {
     alias: {
