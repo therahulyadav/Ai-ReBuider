@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['file-saver'], // Externalize file-saver to avoid issues
+      external: ['file-saver'], ['html-to-docx'], // Externalize file-saver to avoid issues
     },
   },
   resolve: {
