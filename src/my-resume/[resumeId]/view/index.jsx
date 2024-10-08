@@ -6,8 +6,7 @@ import React, { useEffect, useState , useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import GlobalApi from './../../../../service/GlobalApi'
 import { RWebShare } from 'react-web-share'
-import { saveAs } from 'file-saver'
-import htmlDocx from 'html-docx-js'
+import {htmlCssExportWord} from "html-css-export-word"
 
 function ViewResume() {
 
@@ -36,10 +35,10 @@ function ViewResume() {
         window.print();
     }
     
-    const handleDownloadDoc = async () => {
-    const componentHTML = componentRef.current.innerHTML;
-    const docxBlob = htmlDocx.asBlob(content); 
-    saveAs(docxBlob, 'document.docx');
+    const handleDownloadDoc() {
+    htmlCssExportWord(
+    componentRef.current.innerHTML, cssFile,
+    "exported-document.doc");
   }
     
   return (
@@ -54,7 +53,7 @@ function ViewResume() {
                     resume url with your friends and family </p>
             <div className='flex justify-between px-44 my-10'>
                 <Button onClick={HandleDownload}>Download</Button>
-                <Button onClick={handleDownloadDoc}>Download as .docx</Button>
+                <Button onClick={handleDownloadDoc}>Download as Word.doc file</Button>
                <Button onClick={copyToClip}>Share</Button>
  
             </div>
