@@ -35,23 +35,22 @@ function ViewResume() {
     const HandleDownload=()=>{
         window.print();
     }
+    
     const handleDownloadDoc = async () => {
-    // Get the HTML content of the component
     const componentHTML = componentRef.current.innerHTML;
-
-    // Convert HTML to .docx format
     const docxContent = await htmlToDocx(componentHTML, {
       orientation: "portrait",
       margins: { top: 720, right: 720, bottom: 720, left: 720 },
     });
 
-    // Trigger download
     const blob = new Blob([docxContent], {
       type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     });
+
+    // Use file-saver to trigger download
     saveAs(blob, "component.docx");
-  };
-console.log(resumeInfo);
+  }
+    
   return (
     <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
         <div id="no-print">
