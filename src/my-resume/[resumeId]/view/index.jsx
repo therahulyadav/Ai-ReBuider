@@ -61,7 +61,7 @@ function ViewResume() {
         </div>
             
         </div>
-        <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
+        <div className='my-10 mx-10 md:mx-20 lg:mx-36' id='sidePrintMargin'>
         <div  ref={componentRef} id="print-area" >
                 <ResumePreview />
         </div>
