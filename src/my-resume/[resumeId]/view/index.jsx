@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom'
 import GlobalApi from './../../../../service/GlobalApi'
 import { RWebShare } from 'react-web-share'
 import { saveAs } from 'file-saver'
-import htmlToDocx from 'html-to-docx'
+import htmlDocx from 'html-docx-js'
 
 function ViewResume() {
 
@@ -37,26 +37,9 @@ function ViewResume() {
     }
     
     const handleDownloadDoc = async () => {
-          try {
-    const { default: htmlToDocx } = await import('html-to-docx');
-              
-  } catch (error) {
-    console.error("Failed to load html-to-docx", error);
-  }
     const componentHTML = componentRef.current.innerHTML;
-    try{
-    const docxContent = await htmlToDocx(componentHTML, {
-      orientation: "portrait",
-      margins: { top: 720, right: 720, bottom: 720, left: 720 },
-    });
-    }catch(error){console.error("fail to docxcontent")}
-    try{
-    const blob = new Blob([docxContent], {
-      type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    });
-    }catch(e){console.log("fail to blob html")}
-    // Use file-saver to trigger download
-    saveAs(blob, "component.docx");
+    const docxBlob = htmlDocx.asBlob(content); 
+    saveAs(docxBlob, 'document.docx');
   }
     
   return (
