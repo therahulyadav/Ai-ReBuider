@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['file-saver', 'html-to-docx'], // Corrected the array syntax
+      external: ['html-to-docx'], // Corrected the array syntax
     },
   },
   resolve: {
