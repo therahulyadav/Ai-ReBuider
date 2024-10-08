@@ -11,6 +11,11 @@
     #print-area{
       display: block;
     }
+    #sidePrintMargin{
+      margin:0;
+      padding:0;
+      box-shadow:none;
+    }
 
     body{
       margin: 0;
