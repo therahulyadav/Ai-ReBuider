@@ -36,6 +36,8 @@ function ViewResume() {
     }
     
     const handleDownloadDoc = () => {
+        console.log(componentRef);
+        console.log(componentRef.current);
     htmlCssExportWord(componentRef.current.innerHTML, cssFile,"exported-document.doc");
     };
     
