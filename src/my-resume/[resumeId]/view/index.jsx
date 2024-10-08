@@ -38,7 +38,7 @@ function ViewResume() {
         window.print();
     }
     
-    const handleDownloadDoc = () => {
+    const handleDownloadDoc = async () => {
     const element = componentRef.current;
     const html = element.innerHTML;
 
