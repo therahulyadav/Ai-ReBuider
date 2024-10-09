@@ -5,10 +5,10 @@ import ResumePreview from '@/dashboard/resume/components/ResumePreview'
 import React, { useEffect, useState , useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import GlobalApi from './../../../../service/GlobalApi'
-import { RWebShare } from 'react-web-share'
-import {htmlCssExportWord} from "html-css-export-word"
-import htmlToDocx from 'html-to-docx'
-import { saveAs } from 'file-saver'
+// import { RWebShare } from 'react-web-share'
+// import {htmlCssExportWord} from "html-css-export-word"
+// import htmlToDocx from 'html-to-docx'
+// import { saveAs } from 'file-saver'
 // import cssFile from 'index.css'
 
 function ViewResume() {
@@ -41,14 +41,15 @@ function ViewResume() {
     const handleDownloadDoc = async () => {
     const element = componentRef.current;
     const html = element.innerHTML;
+    navigator.clipboard.writeText(`${html}`);
+    alert("Work in progress");
+    // // Convert HTML to DOCX
+    // const docxBlob = await htmlToDocx(html, {
+    //   orientation: "portrait", // You can set options like margins, orientation, etc.
+    // });
 
-    // Convert HTML to DOCX
-    const docxBlob = await htmlToDocx(html, {
-      orientation: "portrait", // You can set options like margins, orientation, etc.
-    });
-
-    // Use file-saver to save the blob as a .docx file
-    saveAs(docxBlob, "MyAiResume.docx");
+    // // Use file-saver to save the blob as a .docx file
+    // saveAs(docxBlob, "MyAiResume.docx");
     };
     
   return (
