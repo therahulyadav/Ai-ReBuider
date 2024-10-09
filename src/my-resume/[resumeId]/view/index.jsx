@@ -2,15 +2,10 @@ import Header from '@/components/custom/Header'
 import { Button } from '@/components/ui/button'
 import { ResumeInfoContext } from '@/context/ResumeInfoContext'
 import ResumePreview from '@/dashboard/resume/components/ResumePreview'
-import React, { useEffect, useState , useRef } from 'react'
+import { useEffect, useState , useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import GlobalApi from './../../../../service/GlobalApi'
-// import { RWebShare } from 'react-web-share'
-// import {htmlCssExportWord} from "html-css-export-word"
-// import htmlToDocx from 'html-to-docx'
-// import { saveAs } from 'file-saver'
-// import cssFile from 'index.css'
-import { ConvertApi } from 'convertapi-js'
+import { Link } from 'react-router-dom'
 
 function ViewResume() {
   
@@ -39,21 +34,6 @@ function ViewResume() {
         window.print();
     }
     
-    const handleDownloadDoc = async () => {
-      const convertApi = ConvertApi.auth('secret_KkE5y3oXQGzxrRyo')
-      let params = convertApi.createParams()
-      params.add('File', elFileInput.files[0]);
-      params.add('FileName', 'My Ai resume');
-      let result = await convertApi.convert('pdf', 'docx', params);
-    alert("Work in progress");
-    // // Convert HTML to DOCX
-    // const docxBlob = await htmlToDocx(html, {
-    //   orientation: "portrait", // You can set options like margins, orientation, etc.
-    // });
-
-    // // Use file-saver to save the blob as a .docx file
-    // saveAs(docxBlob, "MyAiResume.docx");
-    };
     
   return (
     <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
@@ -66,8 +46,10 @@ function ViewResume() {
                 <p className='text-center text-gray-400'>Now you are ready to download your resume and you can share unique 
                     resume url with your friends and family </p>
             <div className='flex justify-between px-44 my-10'>
-                <Button onClick={HandleDownload}>Download</Button>
-                <Button onClick={handleDownloadDoc}>Download as Word.doc file</Button>
+                <Button onClick={HandleDownload}>Download</Button> 
+                <Link to={'/pdftodocx'}>
+                <Button >Convert PDF To Docx</Button>
+                </Link>
                <Button onClick={copyToClip}>Share</Button>
  
             </div>

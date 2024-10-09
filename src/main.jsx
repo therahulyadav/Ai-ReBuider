@@ -9,7 +9,7 @@ import Dashboard from './dashboard/index.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
 import EditResume from './dashboard/resume/[resumeId]/edit/index.jsx'
 import ViewResume from './my-resume/[resumeId]/view/index.jsx'
-
+import PdfToDocx from './converter/PdfToDocx.jsx'
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 const router=createBrowserRouter([
   {
@@ -26,6 +26,10 @@ const router=createBrowserRouter([
       {
         path:'/dashboard/resume/:resumeId/edit',
         element:<EditResume/>
+      },
+      {
+        path:'/pdftodocx',
+        element:<PdfToDocx/>
       },
     ]
   },
