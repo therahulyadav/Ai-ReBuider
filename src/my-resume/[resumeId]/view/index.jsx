@@ -45,7 +45,7 @@ function ViewResume() {
                 Congrats! Your Ultimate AI generates Resume is ready ! </h2>
                 <p className='text-center text-gray-400'>Now you are ready to download your resume and you can share unique 
                     resume url with your friends and family </p>
-            <div className='flex justify-between px-44 my-10'>
+            <div className='flex justify-between  md:px-44 my-10'>
                 <Button onClick={HandleDownload}>Download</Button> 
                 <Link to={'/pdftodocx'}>
                 <Button >Convert PDF To Docx</Button>
