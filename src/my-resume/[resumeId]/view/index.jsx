@@ -10,11 +10,10 @@ import GlobalApi from './../../../../service/GlobalApi'
 // import htmlToDocx from 'html-to-docx'
 // import { saveAs } from 'file-saver'
 // import cssFile from 'index.css'
-import convertApi from 'convertapi-js'
+import ConvertApi from 'convertapi-js'
 
 function ViewResume() {
   
-  let convertApi = ConvertApi.auth('secret_KkE5y3oXQGzxrRyo')
     const [resumeInfo,setResumeInfo]=useState();
     const {resumeId}=useParams();
     const componentRef = useRef();
@@ -41,10 +40,11 @@ function ViewResume() {
     }
     
     const handleDownloadDoc = async () => {
+      const convertApi = ConvertApi.auth('secret_KkE5y3oXQGzxrRyo')
       let params = convertApi.createParams()
       params.add('File', elFileInput.files[0]);
       params.add('FileName', 'My Ai resume');
-      let result = await convertApi.convert('pdf', 'docx', params)
+      let result = await convertApi.convert('pdf', 'docx', params);
     alert("Work in progress");
     // // Convert HTML to DOCX
     // const docxBlob = await htmlToDocx(html, {
