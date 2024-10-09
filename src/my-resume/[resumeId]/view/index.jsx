@@ -10,7 +10,7 @@ import GlobalApi from './../../../../service/GlobalApi'
 // import htmlToDocx from 'html-to-docx'
 // import { saveAs } from 'file-saver'
 // import cssFile from 'index.css'
-import ConvertApi from 'convertapi-js'
+import { ConvertApi } from 'convertapi-js'
 
 function ViewResume() {
   
