@@ -9,18 +9,12 @@ import SkillsPreview from './preview/SkillsPreview'
 function ResumePreview() {
 
     const {resumeInfo,setResumeInfo}=useContext(ResumeInfoContext)
-    const style2 = {
-        boxShadow: "0px 10px 15px rgba(0, 0, 0, 0.1)",
-        height: "100%",
-        padding: "3.5rem",
-        borderTop: "20px solid #000"
-      };
-    const style1 ={
-        borderColor:resumeInfo?.themeColor
-    }
+
   return (
-    <div 
-    style={{ ...style1, ...style2 }}>
+    <div className='shadow-lg h-full p-14 border-t-[20px]'
+    style={{
+        borderColor:resumeInfo?.themeColor
+    }}>
         {/* Personal Detail  */}
             <PersonalDetailPreview resumeInfo={resumeInfo} />
         {/* Summery  */}
