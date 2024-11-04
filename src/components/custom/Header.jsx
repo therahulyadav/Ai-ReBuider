@@ -1,16 +1,26 @@
-import React from 'react'
 import { Button } from '../ui/button'
 import { Link } from 'react-router-dom'
 import { UserButton, useUser } from '@clerk/clerk-react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 function Header() {
-    const { user, isSignedIn } = useUser();
+    const { isSignedIn } = useUser();
+    const { scrollY } = useScroll();
+    const backgroundColor = useTransform(
+        scrollY,
+        [0, 100],
+        ["rgba(255, 255, 255, 0.5)", "rgba(255, 255, 255, 0.95)"]
+    );
+    const boxShadow = useTransform(
+        scrollY,
+        [0, 100],
+        ["none", "0 4px 6px -1px rgb(0 0 0 / 0.1)"]
+    );
+
     return (
         <motion.div 
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            className='fixed w-full top-0 z-50 backdrop-blur-md bg-white/70 p-4 px-6 flex justify-between items-center shadow-lg'
+            style={{ backgroundColor, boxShadow }}
+            className='sticky top-0 z-50 backdrop-blur-md p-4 px-6 flex justify-between items-center transition-all duration-300'
         >
             <Link to={'/'}>
                 <motion.img 
@@ -19,6 +29,7 @@ function Header() {
                     className='cursor-pointer' 
                     width={100} 
                     height={100}
+                    alt="Logo"
                 />
             </Link>
             {isSignedIn ? (
