@@ -24,6 +24,46 @@ import {
   AlertDialogDescription,
 } from "@/components/ui/alert-dialog"
 
+const printStyles = `
+  @page {
+    margin: 0;
+    size: A4;
+  }
+
+  @media print {
+    body {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    #no-print {
+      display: none !important;
+    }
+
+    #print-area {
+      margin: 0 !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+    }
+
+    #sidePrintMargin {
+      margin: 0 !important;
+    }
+
+    /* Reset all background colors to white */
+    .bg-primary,
+    .bg-gradient-to-r,
+    [class*='bg-'] {
+      background: white !important;
+    }
+
+    /* Ensure text remains visible */
+    * {
+      text-shadow: none !important;
+    }
+  }
+`;
+
 function ViewResume() {
   const [resumeInfo, setResumeInfo] = useState()
   const [selectedTemplate, setSelectedTemplate] = useState('classic')
@@ -35,6 +75,16 @@ function ViewResume() {
   useEffect(() => {
     GetResumeInfo()
   }, [])
+
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = printStyles;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
 
   const GetResumeInfo = () => {
     GlobalApi.GetResumeById(resumeId)
@@ -57,9 +107,11 @@ function ViewResume() {
   }
 
   const HandleDownload = () => {
-    window.print()
-    setShowDownloadAlert(true)
-    setTimeout(() => setShowDownloadAlert(false), 2000)
+    document.body.classList.add('printing');
+    window.print();
+    document.body.classList.remove('printing');
+    setShowDownloadAlert(true);
+    setTimeout(() => setShowDownloadAlert(false), 2000);
   }
 
   const SelectedTemplateComponent = templates[selectedTemplate]

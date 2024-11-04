@@ -36,10 +36,13 @@ function ResumePreview() {
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            className='shadow-2xl h-full p-14 border-t-[20px] bg-white/95 backdrop-blur-sm rounded-lg transition-all duration-300 hover:shadow-3xl'
+            className='shadow-2xl h-full p-14 border-t-[20px] bg-white/95 backdrop-blur-sm rounded-lg transition-all duration-300 hover:shadow-3xl print:bg-white print:shadow-none'
             style={{
                 borderColor: resumeInfo?.themeColor,
-                background: `linear-gradient(to bottom right, white, ${resumeInfo?.themeColor}05)`
+                background: `linear-gradient(to bottom right, white, ${resumeInfo?.themeColor}05)`,
+                '@media print': {
+                    background: 'white'
+                }
             }}
         >
             <motion.div variants={itemVariants}>
