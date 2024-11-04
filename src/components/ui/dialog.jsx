@@ -35,7 +35,7 @@ const DialogContent = React.forwardRef(({ className, children, ...props }, ref) 
         transition={{ duration: 0.2, ease: "easeOut" }}
         ref={ref}
         className={cn(
-          "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background/95 p-6 shadow-lg backdrop-blur-sm rounded-xl",
+          "fixed left-[3%] top-[35%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background/95 p-6 shadow-lg backdrop-blur-sm rounded-xl",
           className
         )}
         {...props}>
