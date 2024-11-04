@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import GlobalApi from './../../../../../service/GlobalApi'
 import { toast } from 'sonner'
 import { LoaderCircle } from 'lucide-react'
+import { SpeechInput } from '@/components/ui/speech-input';
 
 const formField={
     title:'',
@@ -16,7 +17,6 @@ const formField={
     startDate:'',
     endDate:'',
     workSummery:'',
-
 }
 function Experience() {
     const [experinceList,setExperinceList]=useState([]);
@@ -29,13 +29,14 @@ function Experience() {
         
     },[])
 
-    const handleChange=(index,event)=>{
-        const newEntries=experinceList.slice();
-        const {name,value}=event.target;
-        newEntries[index][name]=value;
-        console.log(newEntries)
+    const handleChange = (index, event) => {
+        const newEntries = experinceList.slice();
+        const name = event.target.name;
+        const value = event.target.value;
+        
+        newEntries[index][name] = value;
         setExperinceList(newEntries);
-    }
+    };
 
     const AddNewExperience=()=>{
     
@@ -100,42 +101,52 @@ function Experience() {
                     <div className='grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg'>
                         <div>
                             <label className='text-xs'>Position Title</label>
-                            <Input name="title" 
-                            onChange={(event)=>handleChange(index,event)}
-                            defaultValue={item?.title}
+                            <SpeechInput 
+                                name="title" 
+                                onChange={(e) => handleChange(index, e)}
+                                defaultValue={item?.title}
                             />
                         </div>
                         <div>
                             <label className='text-xs'>Company Name</label>
-                            <Input name="companyName" 
-                            onChange={(event)=>handleChange(index,event)}
-                            defaultValue={item?.companyName} />
+                            <SpeechInput 
+                                name="companyName" 
+                                onChange={(e) => handleChange(index, e)}
+                                defaultValue={item?.companyName} 
+                            />
                         </div>
                         <div>
                             <label className='text-xs'>City</label>
-                            <Input name="city" 
-                            onChange={(event)=>handleChange(index,event)} 
-                            defaultValue={item?.city}/>
+                            <SpeechInput 
+                                name="city" 
+                                onChange={(e) => handleChange(index, e)}
+                                defaultValue={item?.city}
+                            />
                         </div>
                         <div>
                             <label className='text-xs'>State</label>
-                            <Input name="state" 
-                            onChange={(event)=>handleChange(index,event)}
-                            defaultValue={item?.state}
-                             />
+                            <SpeechInput 
+                                name="state" 
+                                onChange={(e) => handleChange(index, e)}
+                                defaultValue={item?.state}
+                            />
                         </div>
                         <div>
                             <label className='text-xs'>Start Date</label>
-                            <Input type="date"  
-                            name="startDate" 
-                            onChange={(event)=>handleChange(index,event)} 
-                            defaultValue={item?.startDate}/>
+                            <Input 
+                                type="date"  
+                                name="startDate" 
+                                onChange={(e) => handleChange(index, e)} 
+                                defaultValue={item?.startDate}
+                            />
                         </div>
                         <div>
                             <label className='text-xs'>End Date</label>
-                            <Input type="date" name="endDate" 
-                            onChange={(event)=>handleChange(index,event)} 
-                            defaultValue={item?.endDate}
+                            <Input 
+                                type="date" 
+                                name="endDate" 
+                                onChange={(e) => handleChange(index, e)} 
+                                defaultValue={item?.endDate}
                             />
                         </div>
                         <div className='col-span-2'>
@@ -143,7 +154,7 @@ function Experience() {
                            <RichTextEditor
                            index={index}
                            defaultValue={item?.workSummery}
-                           onRichTextEditorChange={(event)=>handleRichTextEditor(event,'workSummery',index)}  />
+                           onRichTextEditorChange={(e) => handleRichTextEditor(e, 'workSummery', index)}  />
                         </div>
                     </div>
                 </div>

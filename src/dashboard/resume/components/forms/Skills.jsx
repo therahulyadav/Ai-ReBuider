@@ -9,6 +9,8 @@ import { ResumeInfoContext } from '@/context/ResumeInfoContext'
 import GlobalApi from './../../../../../service/GlobalApi'
 import { useParams } from 'react-router-dom'
 import { toast } from 'sonner'
+import { SpeechInput } from '@/components/ui/speech-input'
+
 function Skills() {
 
     const [skillsList,setSkillsList]=useState([{
@@ -74,12 +76,14 @@ function Skills() {
 
     <div>
         {skillsList.map((item,index)=>(
-            <div className='flex justify-between mb-2 border rounded-lg p-3 '>
+            <div key={index} className='flex justify-between mb-2 border rounded-lg p-3'>
                 <div>
                     <label className='text-xs'>Name</label>
-                    <Input className="w-full"
-                    defaultValue={item.name}
-                    onChange={(e)=>handleChange(index,'name',e.target.value)} />
+                    <SpeechInput 
+                        className="w-full"
+                        defaultValue={item.name}
+                        onChange={(e)=>handleChange(index,'name',e.target.value)}
+                    />
                 </div>
                 <Rating style={{ maxWidth: 120 }} value={item.rating} 
                 onChange={(v)=>handleChange(index,'rating',v)}/>

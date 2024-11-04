@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { Textarea } from '@/components/ui/textarea'
+import { SpeechTextarea } from '@/components/ui/speech-textarea'
 import { ResumeInfoContext } from '@/context/ResumeInfoContext'
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
@@ -64,10 +64,12 @@ function Summery({enabledNext}) {
                 type="button" size="sm" className="border-primary text-primary flex gap-2"> 
                 <Brain className='h-4 w-4' />  Generate from AI</Button>
             </div>
-            <Textarea className="mt-5" required
-            value={summery}
+            <SpeechTextarea 
+                className="mt-5" 
+                required
+                value={summery}
                 defaultValue={summery?summery:resumeInfo?.summery}
-            onChange={(e)=>setSummery(e.target.value)}
+                onChange={(e)=>setSummery(e.target.value)}
             />
             <div className='mt-2 flex justify-end'>
             <Button type="submit"
