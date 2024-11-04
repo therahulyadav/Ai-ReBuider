@@ -20,7 +20,7 @@ const ModernTemplate = ({ resumeInfo }) => {
         <div className="w-1/3 bg-gray-50 p-6 rounded-lg">
           <div className="mb-8 text-center">
             <h1 className="text-2xl font-bold mb-2" style={{ color: resumeInfo?.themeColor }}>
-              {resumeInfo?.firstName}<br/>{resumeInfo?.lastName}
+              {resumeInfo?.firstName} {resumeInfo?.lastName}
             </h1>
             <p className="text-gray-600 mb-2">{resumeInfo?.jobTitle}</p>
             <hr className="border-t-2 w-16 mx-auto mb-4" style={{ borderColor: resumeInfo?.themeColor }} />
@@ -38,7 +38,8 @@ const ModernTemplate = ({ resumeInfo }) => {
                     <div className="h-1.5 bg-gray-200 rounded">
                       <div className="h-full rounded" style={{ 
                         width: `${skill.rating * 20}%`,
-                        backgroundColor: resumeInfo?.themeColor 
+                        backgroundColor: resumeInfo?.themeColor,
+                        border: `1px solid ${resumeInfo?.themeColor}`
                       }}></div>
                     </div>
                   </div>
@@ -166,7 +167,8 @@ const CreativeTemplate = ({ resumeInfo }) => {
                     <div className="h-1.5 bg-gray-100 rounded-full">
                       <div className="h-full rounded-full" style={{ 
                         width: `${skill.rating * 20}%`,
-                        backgroundColor: resumeInfo?.themeColor 
+                        backgroundColor: resumeInfo?.themeColor,
+                        border: `1px solid ${resumeInfo?.themeColor}`
                       }}></div>
                     </div>
                   </div>
@@ -248,7 +250,8 @@ const ProfessionalTemplate = ({ resumeInfo }) => {
                           className="h-full rounded-full" 
                           style={{ 
                             width: `${skill.rating * 20}%`,
-                            backgroundColor: resumeInfo?.themeColor 
+                            backgroundColor: resumeInfo?.themeColor,
+                            border: `1px solid ${resumeInfo?.themeColor}`
                           }}
                         />
                       </div>
