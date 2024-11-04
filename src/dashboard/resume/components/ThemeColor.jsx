@@ -10,6 +10,7 @@ import { ResumeInfoContext } from '@/context/ResumeInfoContext'
 import GlobalApi from './../../../../service/GlobalApi'
 import { useParams } from 'react-router-dom'
 import { toast } from 'sonner'
+import { motion } from 'framer-motion'
 
 function ThemeColor() {
     const colors=[
@@ -22,6 +23,7 @@ function ThemeColor() {
     const {resumeInfo,setResumeInfo}=useContext(ResumeInfoContext);
     const [selectedColor,setSelectedColor]=useState();
     const {resumeId}=useParams();
+    
     const onColorSelect=(color)=>{
         setSelectedColor(color)
         setResumeInfo({
@@ -35,35 +37,63 @@ function ThemeColor() {
         }
         GlobalApi.UpdateResumeDetail(resumeId,data).then(resp=>{
             console.log(resp);
-            toast('Theme Color Updated')
+            toast('Theme Color Updated', {
+              style: { background: color, color: '#fff' }
+            })
         })
     }
 
   return (
     <Popover>
-  <PopoverTrigger asChild>
-  <Button variant="outline" size="sm" 
-          className="flex gap-2" > <LayoutGrid/> Theme</Button>
-  </PopoverTrigger>
-  <PopoverContent>
-    <h2 className='mb-2 text-sm font-bold'>Select Theme Color</h2>
-    <div className='grid grid-cols-5 gap-3'>
-        {colors.map((item,index)=>(
-            <div 
-            onClick={()=>onColorSelect(item)}
-            className={`h-5 w-5 rounded-full cursor-pointer
-             hover:border-black border
-             ${selectedColor==item&&'border border-black'}
-             `}
-            style={{
-                background:item
-            }}>
-
-            </div>
-        ))}
-    </div>
-  </PopoverContent>
-</Popover>
+      <PopoverTrigger asChild>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="flex gap-2 transition-all duration-300 hover:shadow-lg"
+          >
+            <LayoutGrid className="animate-pulse"/> 
+            Theme
+          </Button>
+        </motion.div>
+      </PopoverTrigger>
+      <PopoverContent className="backdrop-blur-sm bg-white/90">
+        <motion.h2 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className='mb-4 text-sm font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent'
+        >
+          Select Theme Color
+        </motion.h2>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className='grid grid-cols-5 gap-3'
+        >
+          {colors.map((item, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.2, rotate: 180 }}
+              whileTap={{ scale: 0.8 }}
+              onClick={() => onColorSelect(item)}
+              className={`h-6 w-6 rounded-full cursor-pointer
+                transition-all duration-300
+                hover:shadow-lg hover:shadow-${item}/50
+                ${selectedColor === item ? 'ring-2 ring-offset-2' : 'hover:ring-1'}
+              `}
+              style={{
+                background: item,
+                transform: `rotate(${selectedColor === item ? '360deg' : '0deg'})`,
+                transition: 'transform 0.6s ease'
+              }}
+            />
+          ))}
+        </motion.div>
+      </PopoverContent>
+    </Popover>
   )
 }
 
