@@ -25,7 +25,8 @@ function RichTextEditor({onRichTextEditorChange,index,defaultValue}) {
       const result=await AIChatSession.sendMessage(prompt);
       console.log(result.response.text());
       const resp=result.response.text();
-      const data = resp.bulletPoints.map((val)=>{
+      const res = resp.replace('[','').replace(']','');
+      const data = res.bulletPoints.map((val)=>{
           return(<li>{val}</li>)
       });
       setValue(<ul>{data}</ul>);
