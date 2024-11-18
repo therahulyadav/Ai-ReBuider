@@ -23,7 +23,7 @@ function RichTextEditor({onRichTextEditorChange,index,defaultValue}) {
       const prompt=PROMPT.replace('{positionTitle}',resumeInfo.Experience[index].title);
       
       const result=await AIChatSession.sendMessage(prompt);
-     console.log(result.response());
+     console.log(result);
       console.log(result.response.text());
       const resp=result.response.text();
       setValue(resp);
