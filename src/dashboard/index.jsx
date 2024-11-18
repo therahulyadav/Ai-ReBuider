@@ -8,6 +8,7 @@ import { motion } from 'framer-motion'
 function Dashboard() {
   const {user} = useUser()
   const [resumeList, setResumeList] = useState([])
+  const [loading , setLoading] = useState();
   
   useEffect(() => {
     user && GetResumesList()
@@ -17,11 +18,13 @@ function Dashboard() {
    * Used to Get Users Resume List
    */
   const GetResumesList = () => {
+    setLoading(true);
     GlobalApi.GetUserResumes(user?.primaryEmailAddress?.emailAddress)
       .then(resp => {
         console.log(resp.data.data)
         setResumeList(resp.data.data)
       })
+    setLoading(false);
   }
 
   const containerVariants = {
@@ -97,6 +100,16 @@ function Dashboard() {
           ))
         }
       </motion.div>
+    {loading ?
+      <motion.p
+        initial={{ x: -20, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className='text-gray-600 mt-2'
+      >
+        The project is hosted on a free server. It takes 1-3 minutes to load.
+      </motion.p> : <></>
+}
     </motion.div>
   )
 }

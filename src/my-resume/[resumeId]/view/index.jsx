@@ -71,6 +71,7 @@ function ViewResume() {
   const componentRef = useRef()
   const [showDownloadAlert, setShowDownloadAlert] = useState(false)
   const [showShareAlert, setShowShareAlert] = useState(false)
+  const [loading , setLoading] = useState();
 
   useEffect(() => {
     GetResumeInfo()
@@ -87,6 +88,7 @@ function ViewResume() {
   }, []);
 
   const GetResumeInfo = () => {
+    setLoading(true);
     GlobalApi.GetResumeById(resumeId)
       .then(resp => {
         console.log(resp.data.data)
@@ -95,6 +97,7 @@ function ViewResume() {
       .catch(err => {
         console.error("Error fetching resume:", err)
       })
+      setLoading(false);
   }
 
   function copyToClip() {
@@ -170,6 +173,16 @@ function ViewResume() {
             >
               Download your resume or share the unique URL with others
             </motion.p>
+            {loading ?
+      <motion.p
+        initial={{ x: -20, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className='text-gray-600 mt-2'
+      >
+        The project is hosted on a free server. It takes 1-3 minutes to load.
+      </motion.p> : <></>
+}
 
             <motion.div 
               className='flex flex-col md:flex-row gap-4 md:gap-6 items-center justify-center mt-8 md:mt-10'
