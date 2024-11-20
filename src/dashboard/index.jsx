@@ -23,8 +23,9 @@ function Dashboard() {
       .then(resp => {
         console.log(resp.data.data)
         setResumeList(resp.data.data)
+        setLoading(false);
       })
-    setLoading(false);
+    
   }
 
   const containerVariants = {
