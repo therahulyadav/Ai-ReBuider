@@ -68,7 +68,16 @@ function Dashboard() {
       >
         Start Creating AI resume to your next Job role
       </motion.p>
-      
+       {loading ?
+      <motion.p
+        initial={{ x: -20, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className='text-gray-600 mt-2'
+      >
+        The project is hosted on a free server. It takes 1-3 minutes to load.
+      </motion.p> : <></>
+}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
@@ -100,16 +109,6 @@ function Dashboard() {
           ))
         }
       </motion.div>
-    {loading ?
-      <motion.p
-        initial={{ x: -20, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className='text-gray-600 mt-2'
-      >
-        The project is hosted on a free server. It takes 1-3 minutes to load.
-      </motion.p> : <></>
-}
     </motion.div>
   )
 }
