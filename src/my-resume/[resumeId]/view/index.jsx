@@ -93,11 +93,13 @@ function ViewResume() {
       .then(resp => {
         console.log(resp.data.data)
         setResumeInfo(resp.data.data)
+        setLoading(false);
       })
       .catch(err => {
         console.error("Error fetching resume:", err)
+        setLoading(false);
       })
-      setLoading(false);
+    
   }
 
   function copyToClip() {
@@ -174,14 +176,14 @@ function ViewResume() {
               Download your resume or share the unique URL with others
             </motion.p>
             {loading ?
-      <motion.p
-        initial={{ x: -20, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className='text-gray-600 mt-2'
-      >
-        The project is hosted on a free server. It takes 1-3 minutes to load.
-      </motion.p> : <></>
+               <motion.p 
+              className='text-center text-sm md:text-base text-gray-500 mt-2 px-4'
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              The project is hosted on a free server. It takes 1-3 minutes to load.
+            </motion.p>  : <></>
 }
 
             <motion.div 
