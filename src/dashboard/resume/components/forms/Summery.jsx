@@ -133,7 +133,7 @@ function Summery({enabledNext}) {
                     <h2 className='font-bold text-lg md:text-xl bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent'>
                         Suggestions
                     </h2>
-                    {aiGeneratedSummeryList?.map((item,index)=>(
+                    {aiGeneratedSummeryList.summaries?.map((item,index)=>(
                         <motion.div 
                             key={index} 
                             onClick={()=>setSummery(item?.summary)}
